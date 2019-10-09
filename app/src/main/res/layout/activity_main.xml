@@ -7,8 +7,9 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
-        android:layout_height="301dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
@@ -18,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.95">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,25 +33,28 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/button17"
+                    android:id="@+id/buttonParOpen"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:text="(" />
+                    android:text="("
+                    android:textSize="30sp" />
 
                 <Button
-                    android:id="@+id/button18"
+                    android:id="@+id/buttonParClose"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:text=")" />
+                    android:text=")"
+                    android:textSize="30sp" />
 
                 <Button
                     android:id="@+id/buttonDiv"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:text="/" />
+                    android:text="/"
+                    android:textSize="30sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -61,23 +65,26 @@
                 <Button
                     android:id="@+id/button1"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:text="1" />
+                    android:text="1"
+                    android:textSize="30sp" />
 
                 <Button
                     android:id="@+id/button2"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:text="2" />
+                    android:text="2"
+                    android:textSize="30sp" />
 
                 <Button
                     android:id="@+id/button3"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:text="3" />
+                    android:text="3"
+                    android:textSize="30sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -88,23 +95,26 @@
                 <Button
                     android:id="@+id/button4"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:text="4" />
+                    android:text="4"
+                    android:textSize="30sp" />
 
                 <Button
                     android:id="@+id/button5"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:text="5" />
+                    android:text="5"
+                    android:textSize="30sp" />
 
                 <Button
                     android:id="@+id/button6"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:text="6" />
+                    android:text="6"
+                    android:textSize="30sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -115,23 +125,26 @@
                 <Button
                     android:id="@+id/button7"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:text="7" />
+                    android:text="7"
+                    android:textSize="30sp" />
 
                 <Button
                     android:id="@+id/button8"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:text="8" />
+                    android:text="8"
+                    android:textSize="30sp" />
 
                 <Button
                     android:id="@+id/button9"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:text="9" />
+                    android:text="9"
+                    android:textSize="30sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -140,18 +153,20 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/button10"
+                    android:id="@+id/button0"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:text="0" />
+                    android:text="0"
+                    android:textSize="30sp" />
 
                 <Button
                     android:id="@+id/buttonDot"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="100dp"
                     android:layout_weight="2"
-                    android:text="." />
+                    android:text="."
+                    android:textSize="30sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -165,32 +180,49 @@
             <Button
                 android:id="@+id/buttonMult"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="*" />
+                android:layout_height="100dp"
+                android:text="*"
+                android:textSize="30sp" />
 
             <Button
                 android:id="@+id/buttonMinus"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="-" />
+                android:layout_height="100dp"
+                android:text="-"
+                android:textSize="30sp" />
 
             <Button
                 android:id="@+id/buttonPlus"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="+" />
+                android:layout_height="100dp"
+                android:text="+"
+                android:textSize="30sp" />
 
             <Button
                 android:id="@+id/buttonDel"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="DEL" />
+                android:layout_height="100dp"
+                android:text="DEL"
+                android:textSize="30sp" />
 
             <Button
                 android:id="@+id/buttonEquals"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="=" />
+                android:layout_height="100dp"
+                android:text="="
+                android:textSize="30sp" />
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13999999" />
 </androidx.constraintlayout.widget.ConstraintLayout>
