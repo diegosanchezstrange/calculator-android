@@ -2,7 +2,9 @@ package com.example.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,34 +23,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView tvResult = (TextView)findViewById(R.id.textViewResult);
-
-        Button buttonParOpen = (Button)findViewById(R.id.buttonParOpen);
-        Button buttonParClose = (Button)findViewById(R.id.buttonParClose);
-        Button buttonDiv = (Button)findViewById(R.id.buttonDiv);
-        Button buttonMult = (Button)findViewById(R.id.buttonMult);
-        Button buttonMinus = (Button)findViewById(R.id.buttonMinus);
-        Button buttonPlus = (Button)findViewById(R.id.buttonPlus);
-        Button buttonEquals = (Button)findViewById(R.id.buttonEquals);
-        Button buttonDel = (Button)findViewById(R.id.buttonDel);
-        Button button1 = (Button)findViewById(R.id.button1);
-        Button button2 = (Button)findViewById(R.id.button2);
-        Button button3 = (Button)findViewById(R.id.button3);
-        Button button4 = (Button)findViewById(R.id.button4);
-        Button button5 = (Button)findViewById(R.id.button5);
-        Button button6 = (Button)findViewById(R.id.button6);
-        Button button7 = (Button)findViewById(R.id.button7);
-        Button button8 = (Button)findViewById(R.id.button8);
-        Button button9 = (Button)findViewById(R.id.button9);
-        Button button0 = (Button)findViewById(R.id.button0);
-        Button buttonDot = (Button)findViewById(R.id.buttonDot);
-
     }
 
 
     @Override
     public void onClick(View v)
     {
+        buttonEffect(v);
+
         TextView tvResult = findViewById(R.id.textViewResult);
         Button button = (Button)v;
         String textBtn = (String) button.getText();
@@ -61,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if (SIMBOLS.contains(result.substring(resultLength-2)))
         {
-            result += textBtn;
+            result += "+";
             tvResult.setText(result);
             return;
         }
@@ -71,4 +53,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             tvResult.setText(result);
         }
     }
+
+    public static void buttonEffect(View button)
+    {
+        button.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                switch (event.getAction())
+                {
+                    case MotionEvent.ACTION_DOWN:
+                    {
+                        v.getBackground().setColorFilter(0xe066300E, PorterDuff.Mode.SRC_ATOP);
+                        v.invalidate();
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:
+                    {
+                        v.getBackground().clearColorFilter();
+                        v.invalidate();
+                        break;
+                    }
+                }
+                return false;
+            }
+        });
+    }
+
 }
