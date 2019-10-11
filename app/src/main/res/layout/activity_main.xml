@@ -34,34 +34,40 @@
                 android:orientation="horizontal">
 
                 <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:id="@+id/buttonParOpen"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
+                    android:layout_height="90dp"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:background="#272727"
+                    android:onClick="onClick"
                     android:text="("
                     android:textColor="#E96121"
                     android:textSize="30sp" />
 
                 <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:id="@+id/buttonParClose"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
+                    android:layout_height="90dp"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:background="#272727"
+                    android:onClick="onClick"
                     android:text=")"
                     android:textColor="#E96121"
                     android:textSize="30sp" />
 
                 <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:id="@+id/buttonDiv"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
+                    android:layout_height="90dp"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:background="#272727"
+                    android:onClick="onClick"
                     android:text="/"
                     android:textColor="#E96121"
                     android:textSize="30sp" />
@@ -74,34 +80,40 @@
                 android:orientation="horizontal">
 
                 <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:id="@+id/button1"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
+                    android:layout_height="90dp"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:background="#272727"
+                    android:onClick="onClick"
                     android:text="1"
                     android:textColor="#ACACAC"
                     android:textSize="30sp" />
 
                 <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:id="@+id/button2"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
+                    android:layout_height="90dp"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:background="#272727"
+                    android:onClick="onClick"
                     android:text="2"
                     android:textColor="#ACACAC"
                     android:textSize="30sp" />
 
                 <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:id="@+id/button3"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
+                    android:layout_height="90dp"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:background="#272727"
+                    android:onClick="onClick"
                     android:text="3"
                     android:textColor="#ACACAC"
                     android:textSize="30sp" />
@@ -113,35 +125,41 @@
                 android:orientation="horizontal">
 
                 <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:id="@+id/button4"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
+                    android:layout_height="90dp"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:background="#272727"
+                    android:onClick="onClick"
                     android:text="4"
                     android:textColor="#ACACAC"
                     android:textSize="30sp" />
 
                 <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:id="@+id/button5"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
+                    android:layout_height="90dp"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:background="#272727"
+                    android:onClick="onClick"
                     android:text="5"
                     android:textColor="#ACACAC"
                     android:textSize="30sp" />
 
                 <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
-
                     android:id="@+id/button6"
+
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
+                    android:layout_height="90dp"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:background="#272727"
+                    android:onClick="onClick"
                     android:text="6"
                     android:textColor="#ACACAC"
                     android:textSize="30sp" />
@@ -153,34 +171,40 @@
                 android:orientation="horizontal">
 
                 <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:id="@+id/button7"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
+                    android:layout_height="90dp"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:background="#272727"
+                    android:onClick="onClick"
                     android:text="7"
                     android:textColor="#ACACAC"
                     android:textSize="30sp" />
 
                 <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:id="@+id/button8"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
+                    android:layout_height="90dp"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:background="#272727"
+                    android:onClick="onClick"
                     android:text="8"
                     android:textColor="#ACACAC"
                     android:textSize="30sp" />
 
                 <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:id="@+id/button9"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
+                    android:layout_height="90dp"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:background="#272727"
+                    android:onClick="onClick"
                     android:text="9"
                     android:textColor="#ACACAC"
                     android:textSize="30sp" />
@@ -192,23 +216,27 @@
                 android:orientation="horizontal">
 
                 <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:id="@+id/button0"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="90dp"
+                    android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:background="#272727"
+                    android:onClick="onClick"
                     android:text="0"
                     android:textColor="#ACACAC"
                     android:textSize="30sp" />
 
                 <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:id="@+id/buttonDot"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="90dp"
+                    android:layout_margin="2dp"
                     android:layout_weight="2"
                     android:background="#272727"
+                    android:onClick="onClick"
                     android:text="."
                     android:textColor="#ACACAC"
                     android:textSize="30sp" />
@@ -223,54 +251,65 @@
             android:orientation="vertical">
 
             <Button
-                style="@style/Widget.AppCompat.Button.Borderless"
                 android:id="@+id/buttonMult"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="90dp"
+                android:layout_margin="2dp"
                 android:background="#272727"
+                android:onClick="onClick"
                 android:text="*"
                 android:textColor="#E96121"
                 android:textSize="30sp" />
 
             <Button
-                style="@style/Widget.AppCompat.Button.Borderless"
                 android:id="@+id/buttonMinus"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="90dp"
+                android:layout_margin="2dp"
                 android:background="#272727"
+                android:onClick="onClick"
                 android:text="-"
                 android:textColor="#E96121"
                 android:textSize="30sp" />
 
             <Button
-                style="@style/Widget.AppCompat.Button.Borderless"
                 android:id="@+id/buttonPlus"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="90dp"
+                android:layout_margin="2dp"
                 android:background="#272727"
+                android:onClick="onClick"
                 android:text="+"
                 android:textColor="#E96121"
                 android:textSize="30sp" />
 
             <Button
+                android:id="@+id/buttonEquals"
                 style="@style/Widget.AppCompat.Button.Borderless"
-                android:id="@+id/buttonDel"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="90dp"
+                android:layout_margin="2dp"
                 android:background="#272727"
-                android:text="DEL"
+                android:onClick="onClick"
+                android:text="="
                 android:textColor="#E96121"
                 android:textSize="30sp" />
 
             <Button
+                android:id="@+id/buttonDel"
                 style="@style/Widget.AppCompat.Button.Borderless"
-                android:id="@+id/buttonEquals"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="90dp"
+                android:layout_margin="2dp"
                 android:background="#272727"
-                android:text="="
+                android:onClick="onClick"
+                android:text="DEL"
                 android:textColor="#E96121"
                 android:textSize="30sp" />
+
         </LinearLayout>
     </LinearLayout>
 
@@ -280,10 +319,9 @@
         android:layout_height="wrap_content"
         android:textColor="#ACACAC"
         android:textSize="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13999999" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
