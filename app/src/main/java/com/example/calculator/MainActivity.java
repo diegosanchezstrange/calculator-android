@@ -41,16 +41,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             result += textBtn;
             tvResult.setText(result);
         }
-        else if (SIMBOLS.contains(result.substring(resultLength-2)))
-        {
-            result += "+";
-            tvResult.setText(result);
-            return;
-        }
-        else
+        else if (textBtn.equals("DEL"))
         {
             result = result.substring(0, resultLength-1);
             tvResult.setText(result);
+        } else
+        {
+            // NO SE COMO COÑO HACER QUE NO ESCRIBA MAS SIMBOLOS CUANDO YA HAY UNO
+            // HOSTIAS
+            if (SIMBOLS.contains(result.substring(resultLength-1)))
+            {
+                tvResult.setText(result);
+                return;
+            }
         }
     }
 
