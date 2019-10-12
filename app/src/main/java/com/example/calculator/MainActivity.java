@@ -47,13 +47,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             tvResult.setText(result);
         } else
         {
-            // NO SE COMO COÑO HACER QUE NO ESCRIBA MAS SIMBOLOS CUANDO YA HAY UNO
-            // HOSTIAS
             if (SIMBOLS.contains(result.substring(resultLength-1)))
             {
                 tvResult.setText(result);
-                return;
+            } else
+            {
+                result += textBtn;
+                tvResult.setText(result);
             }
+
+
         }
     }
 
