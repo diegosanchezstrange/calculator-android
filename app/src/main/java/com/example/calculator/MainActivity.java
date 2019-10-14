@@ -43,23 +43,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             result += textBtn;
             tvResult.setText(result);
-        }
-        else if (textBtn.equals("DEL"))
+        }else if (textBtn.equals("DEL"))
         {
-            result = result.substring(0, resultLength-1);
+            result = result.length() == 0 ? "" : result.substring(0, resultLength-1);
             tvResult.setText(result);
-        } else
+        } else if (!SIMBOLS.contains(result.substring(resultLength-1)))
         {
-            if (SIMBOLS.contains(result.substring(resultLength-1)))
-            {
-                tvResult.setText(result);
-            } else
-            {
-                result += textBtn;
-                tvResult.setText(result);
-            }
-
-
+            result += textBtn;
+            tvResult.setText(result);
         }
     }
 
