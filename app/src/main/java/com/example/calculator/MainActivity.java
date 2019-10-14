@@ -6,7 +6,9 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.regex.Pattern;
@@ -23,13 +25,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        addButtonEffect((ViewGroup) this.findViewById(R.id.linearLayout));
+
     }
 
 
     @Override
     public void onClick(View v)
     {
-        buttonEffect(v);
 
         TextView tvResult = findViewById(R.id.textViewResult);
         Button button = (Button)v;
@@ -60,7 +63,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public static void buttonEffect(View button)
+    private static void addButtonEffect(ViewGroup v)
+    {
+        for (int i = 0; i < v.getChildCount() ; i++)
+        {
+           View currentChild = v.getChildAt(i);
+
+           if(currentChild instanceof Button)
+           {
+                buttonEffect(currentChild);
+           }else if(currentChild instanceof LinearLayout)
+           {
+              addButtonEffect((ViewGroup) currentChild);
+           }
+        }
+    }
+
+    private static void buttonEffect(View button)
     {
         button.setOnTouchListener(new View.OnTouchListener()
         {
