@@ -7,11 +7,12 @@ Welcome to our :fire:awesome:fire: calculator. This is the first of two projects
 ## TODO
 - [x] KeyBoard Design :keyboard:
 - [x] Display Numbers :one::two::three:
+- [x] Long DEL click :point_left:
 - [ ] Symbol validation :heavy_plus_sign::heavy_minus_sign:
 - [ ] Actually calculate things :v:
 - [ ] History :clipboard:
 - [ ] Dynamically show solution :recycle:
 - [ ] Landscape view :squirrel:
-- [ ] Long DEL pulsation :point_left:
+
 
 
