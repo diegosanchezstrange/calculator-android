@@ -16,8 +16,11 @@ import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
 
-    private String result = "";
-    private final String SIMBOLS = "/*-+.=";
+    private String input = "";
+    private final String ALL_SIMBOLS = "/*+=-.()";
+    private final String SIMBOLS = "/*+=";
+    private final String SPECIAL_SIMBOLS = "-.";
+    private final String EVEN_MORE_SPECIAL_SIMBOLS = "()";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -27,30 +30,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         addButtonEffect((ViewGroup) this.findViewById(R.id.linearLayout));
 
+        this.findViewById(R.id.buttonDel).setOnLongClickListener(new View.OnLongClickListener()
+        {
+            @Override
+            public boolean onLongClick(View v) {
+                return false;
+            }
+        });
+
+
+
     }
+
 
 
     @Override
     public void onClick(View v)
     {
-
-        TextView tvResult = findViewById(R.id.textViewResult);
+        TextView tvInput = findViewById(R.id.textViewInput);
         Button button = (Button)v;
         String textBtn = (String) button.getText();
-        int resultLength = result.length();
+        int inputLen = input.length();
 
         if (Pattern.matches( "\\d", textBtn))
         {
-            result += textBtn;
-            tvResult.setText(result);
+            input += textBtn;
+            tvInput.setText(input);
         }else if (textBtn.equals("DEL"))
         {
-            result = result.length() == 0 ? "" : result.substring(0, resultLength-1);
-            tvResult.setText(result);
-        } else if (!SIMBOLS.contains(result.substring(resultLength-1)))
+            input = input.length() == 0 ? "" : input.substring(0, inputLen-1);
+            tvInput.setText(input);
+        } else if ( SIMBOLS.contains(textBtn) && !SIMBOLS.contains(input.equals("") ? "" : input.substring(inputLen-1)))
         {
-            result += textBtn;
-            tvResult.setText(result);
+            input += textBtn;
+            tvInput.setText(input);
+        }else if (input.equals("") && (SPECIAL_SIMBOLS.contains(textBtn) || textBtn.equals("(")))
+        {
+            input += textBtn;
+            tvInput.setText(input);
+        }else if (Pattern.matches( "\\d", input.substring(inputLen-1)))
+        {
+            if(textBtn.equals(")"))
+            {
+
+            }
+            input += textBtn;
+            tvInput.setText(input);
         }
     }
 
