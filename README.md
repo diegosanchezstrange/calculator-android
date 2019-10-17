@@ -12,5 +12,6 @@ Welcome to our :fire:awesome:fire: calculator. This is the first of two projects
 - [ ] History :clipboard:
 - [ ] Dynamically show solution :recycle:
 - [ ] Landscape view :squirrel:
+- [ ] Long DEL pulsation :point_left:
 
 
