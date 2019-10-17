@@ -34,7 +34,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             @Override
             public boolean onLongClick(View v) {
-                return false;
+                TextView tvInput = findViewById(R.id.textViewInput);
+                tvInput.setText("");
+                input = "";
+                return true;
             }
         });
 
@@ -47,6 +50,61 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v)
     {
+        if(validateInput(v))
+        {
+            calculate(v);
+        }
+    }
+
+
+    private static void addButtonEffect(ViewGroup v)
+    {
+        for (int i = 0; i < v.getChildCount() ; i++)
+        {
+           View currentChild = v.getChildAt(i);
+
+           if(currentChild instanceof Button)
+           {
+                buttonEffect(currentChild);
+           }else if(currentChild instanceof LinearLayout)
+           {
+              addButtonEffect((ViewGroup) currentChild);
+           }
+        }
+    }
+
+
+    private static void buttonEffect(View button)
+    {
+        button.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                switch (event.getAction())
+                {
+                    case MotionEvent.ACTION_DOWN:
+                    {
+                        v.getBackground().setColorFilter(0xe066300E, PorterDuff.Mode.SRC_ATOP);
+                        v.invalidate();
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:
+                    {
+                        v.getBackground().clearColorFilter();
+                        v.invalidate();
+                        break;
+                    }
+                }
+                return false;
+            }
+        });
+    }
+
+
+    public boolean validateInput(View v)
+    {
+        boolean val = false;
         TextView tvInput = findViewById(R.id.textViewInput);
         Button button = (Button)v;
         String textBtn = (String) button.getText();
@@ -76,50 +134,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             input += textBtn;
             tvInput.setText(input);
+
+            val = true;
         }
+
+        return val;
     }
 
-    private static void addButtonEffect(ViewGroup v)
-    {
-        for (int i = 0; i < v.getChildCount() ; i++)
-        {
-           View currentChild = v.getChildAt(i);
 
-           if(currentChild instanceof Button)
-           {
-                buttonEffect(currentChild);
-           }else if(currentChild instanceof LinearLayout)
-           {
-              addButtonEffect((ViewGroup) currentChild);
-           }
+    public double calculate(View v)
+    {
+        Button button = (Button) v;
+        String str = (String)button.getText();
+
+        if(str.equals("="))
+        {
+
         }
+        return 0f;
     }
-
-    private static void buttonEffect(View button)
-    {
-        button.setOnTouchListener(new View.OnTouchListener()
-        {
-            @Override
-            public boolean onTouch(View v, MotionEvent event)
-            {
-                switch (event.getAction())
-                {
-                    case MotionEvent.ACTION_DOWN:
-                    {
-                        v.getBackground().setColorFilter(0xe066300E, PorterDuff.Mode.SRC_ATOP);
-                        v.invalidate();
-                        break;
-                    }
-                    case MotionEvent.ACTION_UP:
-                    {
-                        v.getBackground().clearColorFilter();
-                        v.invalidate();
-                        break;
-                    }
-                }
-                return false;
-            }
-        });
-    }
-
 }
