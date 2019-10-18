@@ -29,7 +29,7 @@
 
             <TextView
                 android:id="@+id/textViewInput"
-                android:layout_width="80dp"
+                android:layout_width="0dp"
                 android:layout_height="80dp"
                 android:textColor="@color/colorText"
                 android:textSize="40sp"
@@ -41,13 +41,14 @@
 
             <TextView
                 android:id="@+id/textViewResult"
-                android:layout_width="80dp"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:textColor="#858585"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewInput" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -106,7 +107,7 @@
                     android:textSize="30sp" />
 
                 <Button
-                    android:id="@+id/buttonDiv"
+                    android:id="@+id/buttonDel"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="80dp"
@@ -114,7 +115,7 @@
                     android:layout_weight="1"
                     android:background="#272727"
                     android:onClick="onClick"
-                    android:text="/"
+                    android:text="DEL"
                     android:textColor="#E96121"
                     android:textSize="30sp" />
             </LinearLayout>
@@ -297,14 +298,14 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/buttonDel"
+                android:id="@+id/buttonDiv"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_margin="2dp"
                 android:background="#272727"
                 android:onClick="onClick"
-                android:text="DEL"
+                android:text="/"
                 android:textColor="#E96121"
                 android:textSize="30sp" />
 
