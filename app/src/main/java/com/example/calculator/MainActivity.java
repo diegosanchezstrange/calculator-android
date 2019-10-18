@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private String input = "";
     private final String ALL_SIMBOLS = "/*+=-.()";
-    private final String SIMBOLS = "/*+=";
+    private final String OPERATION_SIMBOLS = "/*+-";
     private final String SPECIAL_SIMBOLS = "-.";
     private final String EVEN_MORE_SPECIAL_SIMBOLS = "()";
 
@@ -43,11 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
             }
         });
-
-
-
     }
-
 
 
     @Override
@@ -115,21 +111,53 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (Pattern.matches( "\\d", textBtn))
         {
+            //Numeros
             input += textBtn;
             tvInput.setText(input);
+            val = true;
         }else if (textBtn.equals("DEL"))
         {
+            //Boton DEL
             input = input.length() == 0 ? "" : input.substring(0, inputLen-1);
             tvInput.setText(input);
-        } else if ( SIMBOLS.contains(textBtn) && !SIMBOLS.contains(input.equals("") ? "" : input.substring(inputLen-1)))
+            val = true;
+        }else if (OPERATION_SIMBOLS.contains(input.equals("") ? "" : input.substring(inputLen-1)) &&
+                    input.length()>1 &&
+                    OPERATION_SIMBOLS.contains(textBtn))
         {
+            if(textBtn.equals("-") && !input.substring(inputLen-1).equals("-"))
+            {
+                input += textBtn;
+                tvInput.setText(input);
+                val = true;
+            }else if(input.substring(inputLen-1).equals("-"))
+            {
+                input = input.substring(0, inputLen-2) + textBtn;
+                tvInput.setText(input);
+                val = true;
+            }else
+            {
+                input = input.substring(0, inputLen-1) + textBtn;
+                tvInput.setText(input);
+                val = true;
+            }
+
+        }else if (OPERATION_SIMBOLS.contains(textBtn) &&
+                    !OPERATION_SIMBOLS.contains(input.equals("") ? "" : input.substring(inputLen-1)) &&
+                    !SPECIAL_SIMBOLS.contains(input.equals("") ? "" : input.substring(inputLen-1)) &&
+                    !"(".equals(input.equals("") ? "" : input.substring(inputLen-1)))
+        {
+            //Operadores + * / =
             input += textBtn;
             tvInput.setText(input);
+            val = true;
         }else if (input.equals("") && (SPECIAL_SIMBOLS.contains(textBtn) || textBtn.equals("(")))
         {
             input += textBtn;
             tvInput.setText(input);
-        }else if (Pattern.matches( "\\d", input.substring(inputLen-1)))
+            val = true;
+        }else if (Pattern.matches( "[\\d+\\-*/]", input.equals("") ? "" : input.substring(inputLen-1)) &&
+                    EVEN_MORE_SPECIAL_SIMBOLS.contains(textBtn))
         {
             if(textBtn.equals(")"))
             {
@@ -152,7 +180,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if(str.equals("="))
         {
-
+            //Expression calc = new ExpressionBuilder(input).build();
+            //double result = calc.evaluate();
         }
         return 0f;
     }
