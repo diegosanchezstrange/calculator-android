@@ -124,9 +124,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             val = true;
         } else if (Pattern.matches("(^([-]?(\\d+)|(\\d+[-+*\\/]\\d+)+([-+*\\/]\\d?)?)+[-+*\\/]?$)*", strInput + textBtn))
         {
-            input += textBtn;
-            tvInput.setText(input);
-            val = true;
+            if(OPERATION_SIMBOLS.contains(input.substring(inputLen-1)))
+            {
+                input = input.substring(0, inputLen-1) + textBtn;
+                tvInput.setText(input);
+                val = true;
+            } else
+            {
+                input += textBtn;
+                tvInput.setText(input);
+                val = true;
+            }
         } else if (textBtn.equals("DEL"))
         {
             //Boton DEL
@@ -141,11 +149,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         /*
 
-        }else if (OPERATION_SIMBOLS.contains(input.equals("") ? "" : input.substring(inputLen-1)) &&
-
-
-                    input.length()>1 &&
-                    OPERATION_SIMBOLS.contains(textBtn))
+        } else if (OPERATION_SIMBOLS.contains(
+            input.equals("") ? "" : input.substring(inputLen-1)) &&
+                                    input.length()>1 &&
+                                    OPERATION_SIMBOLS.contains(textBtn))
         {
             if(textBtn.equals("-") && !input.substring(inputLen-1).equals("-"))
             {
