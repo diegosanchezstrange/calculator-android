@@ -49,10 +49,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v)
     {
-        if(validateInput(v))
+        TextView tvResult = this.findViewById(R.id.textViewResult);
+        Button button = (Button)v;
+
+        if(validateInput(button))
         {
-            calculate(v);
+            if (button.getText().equals("="))
+                tvResult.setText("Caca pa ti");
         }
+
+
     }
 
 
@@ -80,22 +86,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public boolean onTouch(View v, MotionEvent event)
             {
-                switch (event.getAction())
+            switch (event.getAction())
+            {
+                case MotionEvent.ACTION_DOWN:
                 {
-                    case MotionEvent.ACTION_DOWN:
-                    {
-                        v.getBackground().setColorFilter(0xe066300E, PorterDuff.Mode.SRC_ATOP);
-                        v.invalidate();
-                        break;
-                    }
-                    case MotionEvent.ACTION_UP:
-                    {
-                        v.getBackground().clearColorFilter();
-                        v.invalidate();
-                        break;
-                    }
+                    v.getBackground().setColorFilter(0xe066300E, PorterDuff.Mode.SRC_ATOP);
+                    v.invalidate();
+                    break;
                 }
-                return false;
+                case MotionEvent.ACTION_UP:
+                {
+                    v.getBackground().clearColorFilter();
+                    v.invalidate();
+                    break;
+                }
+            }
+            return false;
             }
         });
     }
@@ -104,7 +110,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean validateInput(View v)
     {
         boolean val = false;
-        TextView tvInput = findViewById(R.id.textViewInput);
+        TextView tvInput = this.findViewById(R.id.textViewInput);
+        String strInput = (String) tvInput.getText();
         Button button = (Button)v;
         String textBtn = (String) button.getText();
         int inputLen = input.length();
@@ -115,13 +122,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             input += textBtn;
             tvInput.setText(input);
             val = true;
-        }else if (textBtn.equals("DEL"))
+        } else if (Pattern.matches("(^([-]?(\\d+)|(\\d+[-+*\\/]\\d+)+([-+*\\/]\\d?)?)+[-+*\\/]?$)*", strInput + textBtn))
         {
-            //Boton DEL
-            input = input.length() == 0 ? "" : input.substring(0, inputLen-1);
+            input += textBtn;
             tvInput.setText(input);
             val = true;
+        } else if (textBtn.equals("DEL"))
+        {
+            //Boton DEL
+            input = input.length() == 0 ? "" : input.substring(0, inputLen - 1);
+            tvInput.setText(input);
+            val = true;
+        } else if (textBtn.equals("="))
+        {
+            calculate(input);
+        }
+
+
+        /*
+
         }else if (OPERATION_SIMBOLS.contains(input.equals("") ? "" : input.substring(inputLen-1)) &&
+
+
                     input.length()>1 &&
                     OPERATION_SIMBOLS.contains(textBtn))
         {
@@ -156,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             input += textBtn;
             tvInput.setText(input);
             val = true;
-        }else if (Pattern.matches( "[\\d+\\-*/]", input.equals("") ? "" : input.substring(inputLen-1)) &&
+        }else if (Pattern.matches( "[\\d+\\-/*]", input.equals("") ? "" : input.substring(inputLen-1)) &&
                     EVEN_MORE_SPECIAL_SIMBOLS.contains(textBtn))
         {
             if(textBtn.equals(")"))
@@ -168,21 +190,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             val = true;
         }
+        */
 
         return val;
     }
 
 
-    public double calculate(View v)
+    public double calculate(String string)
     {
-        Button button = (Button) v;
-        String str = (String)button.getText();
-
-        if(str.equals("="))
-        {
-            //Expression calc = new ExpressionBuilder(input).build();
-            //double result = calc.evaluate();
-        }
-        return 0f;
+        Expression calc = new ExpressionBuilder(string).build();
+        return calc.evaluate();
     }
 }
