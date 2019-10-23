@@ -54,8 +54,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if(validateInput(button))
         {
-            if (button.getText().equals("="))
-                tvResult.setText("Caca pa ti");
+            if((Pattern.matches("(^([-]?(\\d+)|(\\d+[-+*\\/]\\d+)+([-+*\\/]\\d?)?)+$)*", input)))
+            {
+                String calculation = Double.toString(calculate(input));
+                tvResult.setText(calculation);
+            }
         }
 
 
@@ -141,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             input = input.length() == 0 ? "" : input.substring(0, inputLen - 1);
             tvInput.setText(input);
             val = true;
-        } else if (textBtn.equals("="))
+        } /*else if (textBtn.equals("="))
         {
             calculate(input);
         }
