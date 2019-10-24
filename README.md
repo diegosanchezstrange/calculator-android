@@ -8,8 +8,8 @@ Welcome to our :fire:awesome:fire: calculator. This is the first of two projects
 - [x] KeyBoard Design :keyboard:
 - [x] Display Numbers :one::two::three:
 - [x] Long DEL click :point_left:
-- [ ] Symbol validation :heavy_plus_sign::heavy_minus_sign:
-- [ ] Actually calculate things :v:
+- [x] Symbol validation :heavy_plus_sign::heavy_minus_sign:
+- [x] Actually calculate things :v:
 - [ ] History :clipboard:
 - [x] Dynamically show solution :recycle:
 - [ ] Landscape view :squirrel:

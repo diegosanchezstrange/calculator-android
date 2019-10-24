@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String input = "";
     private TextView tvInput;
     private TextView tvResult;
-    private final String OPERATION_SIMBOLS = "/*+-";
+    private final String OPERATION_SIMBOLS = "/*+^";
 
 
     @Override
@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             @Override
             public boolean onLongClick(View v) {
-
                 tvInput.setText("");
                 tvResult.setText("");
                 input = "";
@@ -115,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    public void addInput(View v)
+    public boolean addInput(View v)
     {
         String strInput = (String) this.tvInput.getText();
         Button button = (Button)v;
@@ -124,23 +123,53 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (Pattern.matches("^(-?\\d*(\\.\\d*)?(?<=\\d|\\.)[*\\/^+-]?)+$", strInput + textBtn))
         {
-            if(OPERATION_SIMBOLS.contains(inputLen == 0 ? "" : this.input.substring(inputLen-1)) &&
-                OPERATION_SIMBOLS.contains(textBtn))
-            {
-                this.input = this.input.substring(0, inputLen-1) + textBtn;
-                this.tvInput.setText(this.input);
-            } else
+            this.input += textBtn;
+            this.tvInput.setText(this.input);
+            return true;
+        }else if(OPERATION_SIMBOLS.contains(inputLen == 0 ? "" : this.input.substring(inputLen-1)) &&
+                OPERATION_SIMBOLS.contains(textBtn) &&
+                inputLen != 0)
+        {
+            String last = inputLen == 0 ? "" : this.input.substring(inputLen-2);
+            this.input = this.input.substring(0, inputLen-1) + textBtn;
+            this.tvInput.setText(this.input);
+            return true;
+        }else if(textBtn.equals("-"))
+        {
+            String last = inputLen == 0 ? "" : this.input.substring(inputLen-1);
+            if(inputLen == 0)
             {
                 this.input += textBtn;
                 this.tvInput.setText(this.input);
+                return true;
+            }else if(OPERATION_SIMBOLS.contains(last) || Pattern.matches("\\d", last))
+            {
+                this.input += textBtn;
+                this.tvInput.setText(this.input);
+                return true;
             }
-        } else if (textBtn.equals("DEL"))
+        }else if(textBtn.equals("="))
+        {
+            try
+            {
+                String calculation = Double.toString(calculate(input));
+                this.tvInput.setText(calculation);
+                this.input = "";
+            }catch(IllegalArgumentException e)
+            {
+                this.tvResult.setText("");
+            }catch(ArithmeticException e)
+            {
+                this.tvResult.setText("");
+            }
+        }else if (textBtn.equals("DEL"))
         {
             //Boton DEL
             this.input = this.input.length() == 0 ? "" : this.input.substring(0, inputLen - 1);
             this.tvInput.setText(this.input);
+            return true;
         }
-
+        return false;
     }
 
 
