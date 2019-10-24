@@ -121,11 +121,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button button = (Button)v;
         String textBtn = (String) button.getText();
         int inputLen = this.input.length();
+        String last = inputLen == 0 ? "" : this.input.substring(inputLen-1);
 
         if (Pattern.matches("^(-?[\\dE]*(\\.[\\d]*)?(?<=[\\d]|\\.)[*\\/^+-]?)+$", strInput + textBtn))
         {
             String[] nums = this.input.split("[+\\-/^*]");
-            String last = inputLen == 0 ? "" : this.input.substring(inputLen-1);
 
             if(!textBtn.equals(".") || !nums[nums.length-1].contains(".") ||
                 (OPERATION_SIMBOLS + "-").contains(last))
@@ -141,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             //When input is [+*/^] and the last thing is [+-*/^]
             String lastTwo = inputLen == 0 ? "" : this.input.substring(inputLen-2);
+
             if(!Pattern.matches("[+/\\-^*]{2}", lastTwo))
             {
                 this.input = this.input.substring(0, inputLen-1) + textBtn;
@@ -150,7 +151,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else if(textBtn.equals("-"))
         {
             //When input is -
-            String last = inputLen == 0 ? "" : this.input.substring(inputLen-1);
             if(inputLen == 0)
             {
                 //When input is - and text is empty
@@ -164,15 +164,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 this.tvInput.setText(this.input);
                 return true;
             }
-        }else if (textBtn.equals("."))
-        {
-
-
         }else if(textBtn.equals("ANS") && !this.ans.equals("") )
         {
-            this.input += this.ans;
-            this.tvInput.setText(this.input);
-            return true;
+            if((OPERATION_SIMBOLS + "-").contains(last) || inputLen == 0)
+            {
+                this.input += this.ans;
+                this.tvInput.setText(this.input);
+                return true;
+            }
         }else if(textBtn.equals("="))
         {
             try
@@ -180,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String calculation = Double.toString(calculate(input));
                 this.tvInput.setText(calculation);
                 this.ans = calculation;
-                this.input = "";
+                this.input = calculation;
             }catch(IllegalArgumentException e)
             {
                 this.tvResult.setText("");
