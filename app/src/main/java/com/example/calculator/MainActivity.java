@@ -124,9 +124,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (Pattern.matches("^(-?[\\dE]*(\\.[\\d]*)?(?<=[\\d]|\\.)[*\\/^+-]?)+$", strInput + textBtn))
         {
-            this.input += textBtn;
-            this.tvInput.setText(this.input);
-            return true;
+            String[] nums = this.input.split("[+\\-/^*]");
+            String last = inputLen == 0 ? "" : this.input.substring(inputLen-1);
+
+            if(!textBtn.equals(".") || !nums[nums.length-1].contains(".") ||
+                (OPERATION_SIMBOLS + "-").contains(last))
+            {
+                this.input += textBtn;
+                this.tvInput.setText(this.input);
+                return true;
+            }
+
         }else if((OPERATION_SIMBOLS + "-").contains(inputLen == 0 ? "" : this.input.substring(inputLen-1)) &&
                 OPERATION_SIMBOLS.contains(textBtn) &&
                 inputLen != 0)
@@ -156,6 +164,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 this.tvInput.setText(this.input);
                 return true;
             }
+        }else if (textBtn.equals("."))
+        {
+
+
         }else if(textBtn.equals("ANS") && !this.ans.equals("") )
         {
             this.input += this.ans;
