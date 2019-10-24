@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
@@ -123,6 +124,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int inputLen = this.input.length();
         String last = inputLen == 0 ? "" : this.input.substring(inputLen-1);
 
+        if(inputLen == 30)
+        {
+            Toast.makeText(this, "No se pueden introducir mas de 30 caracteres.", Toast.LENGTH_SHORT).show();
+           return false;
+        }
+
         if (Pattern.matches("^(-?[\\dE]*(\\.[\\d]*)?(?<=[\\d]|\\.)[*\\/^+-]?)+$", strInput + textBtn))
         {
             String[] nums = this.input.split("[+\\-/^*]");
@@ -168,6 +175,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             if((OPERATION_SIMBOLS + "-").contains(last) || inputLen == 0)
             {
+
+                if(inputLen + this.ans.length() > 30)
+                {
+                    Toast.makeText(this, "No se pueden introducir mas de 30 caracteres.", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
                 this.input += this.ans;
                 this.tvInput.setText(this.input);
                 return true;
