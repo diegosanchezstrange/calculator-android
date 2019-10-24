@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String textBtn = (String) button.getText();
         int inputLen = this.input.length();
 
-        if (Pattern.matches("^(-?\\d*(\\.\\d*)?(?<=\\d|\\.)[*\\/^+-]?)+$", strInput + textBtn))
+        if (Pattern.matches("^(-?[\\dE]*(\\.[\\d]*)?(?<=[\\d]|\\.)[*\\/^+-]?)+$", strInput + textBtn))
         {
             this.input += textBtn;
             this.tvInput.setText(this.input);
@@ -131,19 +131,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 OPERATION_SIMBOLS.contains(textBtn) &&
                 inputLen != 0)
         {
-            this.input = this.input.substring(0, inputLen-1) + textBtn;
-            this.tvInput.setText(this.input);
-            return true;
+            //When input is [+*/^] and the last thing is [+-*/^]
+            String lastTwo = inputLen == 0 ? "" : this.input.substring(inputLen-2);
+            if(!Pattern.matches("[+/\\-^*]{2}", lastTwo))
+            {
+                this.input = this.input.substring(0, inputLen-1) + textBtn;
+                this.tvInput.setText(this.input);
+                return true;
+            }
         }else if(textBtn.equals("-"))
         {
+            //When input is -
             String last = inputLen == 0 ? "" : this.input.substring(inputLen-1);
             if(inputLen == 0)
             {
+                //When input is - and text is empty
                 this.input += textBtn;
                 this.tvInput.setText(this.input);
                 return true;
-            }else if(OPERATION_SIMBOLS.contains(last) || Pattern.matches("\\d", last))
+            }else if((OPERATION_SIMBOLS.contains(last) || Pattern.matches("\\d", last)))
             {
+                //When input is - and the thing before is a number or [+*/^]
                 this.input += textBtn;
                 this.tvInput.setText(this.input);
                 return true;
