@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 {
 
     private String input = "";
-    private TextView tvInput = findViewById(R.id.textViewInput);
-    private TextView tvResult = findViewById(R.id.textViewResult);
+    private TextView tvInput;
+    private TextView tvResult;
     private final String OPERATION_SIMBOLS = "/*+-";
 
 
@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.tvInput = findViewById(R.id.textViewInput);
+        this.tvResult  = findViewById(R.id.textViewResult);
 
         addButtonEffect((ViewGroup) this.findViewById(R.id.linearLayout));
 
