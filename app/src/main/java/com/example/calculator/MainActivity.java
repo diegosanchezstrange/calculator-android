@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String input = "";
     private TextView tvInput;
     private TextView tvResult;
+    private String ans = "";
     private final String OPERATION_SIMBOLS = "/*+^";
 
 
@@ -126,11 +127,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             this.input += textBtn;
             this.tvInput.setText(this.input);
             return true;
-        }else if(OPERATION_SIMBOLS.contains(inputLen == 0 ? "" : this.input.substring(inputLen-1)) &&
+        }else if((OPERATION_SIMBOLS + "-").contains(inputLen == 0 ? "" : this.input.substring(inputLen-1)) &&
                 OPERATION_SIMBOLS.contains(textBtn) &&
                 inputLen != 0)
         {
-            String last = inputLen == 0 ? "" : this.input.substring(inputLen-2);
             this.input = this.input.substring(0, inputLen-1) + textBtn;
             this.tvInput.setText(this.input);
             return true;
@@ -148,12 +148,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 this.tvInput.setText(this.input);
                 return true;
             }
+        }else if(textBtn.equals("ANS") && !this.ans.equals("") )
+        {
+            this.input += this.ans;
+            this.tvInput.setText(this.input);
+            return true;
         }else if(textBtn.equals("="))
         {
             try
             {
                 String calculation = Double.toString(calculate(input));
                 this.tvInput.setText(calculation);
+                this.ans = calculation;
                 this.input = "";
             }catch(IllegalArgumentException e)
             {
