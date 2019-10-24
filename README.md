@@ -11,7 +11,7 @@ Welcome to our :fire:awesome:fire: calculator. This is the first of two projects
 - [ ] Symbol validation :heavy_plus_sign::heavy_minus_sign:
 - [ ] Actually calculate things :v:
 - [ ] History :clipboard:
-- [ ] Dynamically show solution :recycle:
+- [x] Dynamically show solution :recycle:
 - [ ] Landscape view :squirrel:
 
 
