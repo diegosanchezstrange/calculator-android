@@ -12,7 +12,7 @@ Welcome to our :fire:awesome:fire: calculator. This is the first of two projects
 - [x] Actually calculate things :v:
 - [ ] History :clipboard:
 - [x] Dynamically show solution :recycle:
-- [ ] ~~Landscape view :squirrel:
+- [ ] ~~Landscape view :squirrel:~~
 
 
 
