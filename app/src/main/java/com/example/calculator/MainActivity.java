@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +17,16 @@ import android.widget.Toast;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
+import java.util.Random;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
 
     private String input = "";
+    private String ans = "";
     private TextView tvInput;
     private TextView tvResult;
-    private String ans = "";
     private final String OPERATION_SIMBOLS = "/*+^";
 
 
@@ -55,16 +58,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     {
         Button button = (Button)v;
 
-        this.addInput(button);
+        if(!this.addInput(button))
+        {
+            Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+            String[] mensajes = {"No.","No.","No.","No.","Casi.","Casi.","Casi.", "No te pases de listo.", "Venga crack.", "Va a ser que no.", "Bah.", " ", "Casi.", "¡QUE NO JODER QUE VAN 20 VECES YA DEJA DE DARLE AL BOTONCITO NO VES QUE NO FUNCIONA, A VER SI TE VOY A TENER QUE EXPLICAR COMO FUNCIONA UNA MALDITA CALCULADORA PEDAZO DE INUTIL QUE PARECES NUEVOS JODER QUE LA CALCULADORA ESTA TIENE 4 OPERACIONES Y AUN ASI TE LIAS JODER ES QUE NO PASASTE LA ESO O QUE!", "Casi figura."};
+            Random r = new Random();
+            Toast.makeText(this, mensajes[r.nextInt(mensajes.length)], Toast.LENGTH_SHORT).show();
+            vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE));
+        }
 
         try
         {
             String calculation = Double.toString(calculate(input));
             this.tvResult.setText(calculation);
-        }catch(IllegalArgumentException e)
+        } catch (IllegalArgumentException e)
         {
             this.tvResult.setText("");
-        }catch(ArithmeticException e)
+        } catch (ArithmeticException e)
         {
             this.tvResult.setText("");
         }
@@ -77,10 +87,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
            View currentChild = v.getChildAt(i);
 
-           if(currentChild instanceof Button)
+           if( currentChild instanceof Button)
            {
                 buttonEffect(currentChild);
-           }else if(currentChild instanceof LinearLayout)
+           } else if (currentChild instanceof LinearLayout)
            {
               addButtonEffect((ViewGroup) currentChild);
            }
@@ -123,18 +133,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String textBtn = (String) button.getText();
         int inputLen = this.input.length();
         String last = inputLen == 0 ? "" : this.input.substring(inputLen-1);
+        boolean operationOrDeletion = textBtn.equals("DEL") || textBtn.contains("=");
 
-        if(inputLen == 30)
+        if ((inputLen == 30 && !operationOrDeletion) || (inputLen + this.ans.length() > 30 && textBtn.equals("ANS")))
         {
-            Toast.makeText(this, "No se pueden introducir mas de 30 caracteres.", Toast.LENGTH_SHORT).show();
-           return false;
+            return false;
         }
 
-        if (Pattern.matches("^(-?[\\dE]*(\\.[\\d]*)?(?<=[\\d]|\\.)[*\\/^+-]?)+$", strInput + textBtn))
+        if (!operationOrDeletion && Pattern.matches("^(-?[\\dE]*(\\.[\\d]*)?(?<=[\\d]|\\.)[*\\/^+-]?)+$", strInput + textBtn))
         {
             String[] nums = this.input.split("[+\\-/^*]");
 
-            if(!textBtn.equals(".") || !nums[nums.length-1].contains(".") ||
+            if (!textBtn.equals(".") || !nums[nums.length-1].contains(".") ||
                 (OPERATION_SIMBOLS + "-").contains(last))
             {
                 this.input += textBtn;
@@ -142,67 +152,76 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
             }
 
-        }else if((OPERATION_SIMBOLS + "-").contains(inputLen == 0 ? "" : this.input.substring(inputLen-1)) &&
+        } else if ((OPERATION_SIMBOLS + "-").contains(last) &&
                 OPERATION_SIMBOLS.contains(textBtn) &&
                 inputLen != 0)
         {
             //When input is [+*/^] and the last thing is [+-*/^]
-            String lastTwo = inputLen == 0 ? "" : this.input.substring(inputLen-2);
+            String lastTwo = inputLen < 2 ? "" : this.input.substring(inputLen-2);
 
-            if(!Pattern.matches("[+/\\-^*]{2}", lastTwo))
+            if (!Pattern.matches("[+/\\-^*]{2}", lastTwo) && inputLen != 1)
             {
                 this.input = this.input.substring(0, inputLen-1) + textBtn;
                 this.tvInput.setText(this.input);
                 return true;
             }
-        }else if(textBtn.equals("-"))
+        } else if (textBtn.equals("-"))
         {
             //When input is -
-            if(inputLen == 0)
+            if (inputLen == 0)
             {
                 //When input is - and text is empty
                 this.input += textBtn;
                 this.tvInput.setText(this.input);
                 return true;
-            }else if((OPERATION_SIMBOLS.contains(last) || Pattern.matches("\\d", last)))
+            } else if ((OPERATION_SIMBOLS.contains(last) || Pattern.matches("\\d", last)))
             {
                 //When input is - and the thing before is a number or [+*/^]
                 this.input += textBtn;
                 this.tvInput.setText(this.input);
                 return true;
             }
-        }else if(textBtn.equals("ANS") && !this.ans.equals("") )
+        } else if (textBtn.equals("ANS") && !this.ans.equals("") )
         {
-            if((OPERATION_SIMBOLS + "-").contains(last) || inputLen == 0)
+            //Boton ANS
+            if ((OPERATION_SIMBOLS + "-").contains(last) || inputLen == 0)
             {
-
-                if(inputLen + this.ans.length() > 30)
+                if(this.ans.equals("Infinity"))
                 {
-                    Toast.makeText(this, "No se pueden introducir mas de 30 caracteres.", Toast.LENGTH_SHORT).show();
                     return false;
                 }
                 this.input += this.ans;
                 this.tvInput.setText(this.input);
                 return true;
             }
-        }else if(textBtn.equals("="))
+        }else if (textBtn.equals("="))
         {
+            //Boton EQUALS
             try
             {
                 String calculation = Double.toString(calculate(input));
                 this.tvInput.setText(calculation);
                 this.ans = calculation;
                 this.input = calculation;
-            }catch(IllegalArgumentException e)
+                return true;
+            } catch (IllegalArgumentException e)
             {
                 this.tvResult.setText("");
-            }catch(ArithmeticException e)
+                return false;
+            } catch (ArithmeticException e)
             {
                 this.tvResult.setText("");
+                return false;
             }
-        }else if (textBtn.equals("DEL"))
+        } else if (textBtn.equals("DEL"))
         {
             //Boton DEL
+            if(this.input.equals("Infinity"))
+            {
+                this.input = "";
+                this.tvInput.setText(this.input);
+                return true;
+            }
             this.input = this.input.length() == 0 ? "" : this.input.substring(0, inputLen - 1);
             this.tvInput.setText(this.input);
             return true;
